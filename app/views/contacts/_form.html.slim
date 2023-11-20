@@ -1,13 +1,14 @@
 = form_with(model: contact, local: true) do |form|
-  /- if contact.errors.any?
-    #error_explanation
-      h2 
+
+  - if contact.errors.any?
+    div[style="color: red"]
+      h2
         = pluralize(contact.errors.count, "error")
-        |  prohibited this from being saved:
-      ul 
-        - contact.errors.full_messages.each do |message|
+        |  prohibited this contact from being saved:
+      ul
+        - contact.errors.each do |error|
           li
-            = message
+            = error.full_message
   .card
     .card-body.p-lg-15
       .mb-13
